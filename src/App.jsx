@@ -1,32 +1,31 @@
-import { useState, useEffect } from 'react';
-import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
-// Firebase configuration - replace with your config
-const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
-
-initializeApp(firebaseConfig);
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth';
+import Auth from './components/Auth';
+import Dashboard from './components/Dashboard';
+import WeddingDetail from './components/WeddingDetail';
+import PaymentView from './components/PaymentView';
+import './index.css';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const { user, loading } = useAuth();
 
-  useEffect(() => {
-    const auth = getAuth();
-    return onAuthStateChanged(auth, setUser);
-  }, []);
+  if (loading) {
+    return <div className="loading-screen">Loading...</div>;
+  }
+
+  if (!user) {
+    return <Auth />;
+  }
 
   return (
-    <div className="app">
-      <h1>wedding-automation</h1>
-      <p>{user ? `Welcome, ${user.email}` : 'Not signed in'}</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/wedding/:weddingId" element={<WeddingDetail />} />
+        <Route path="/wedding/:weddingId/payments" element={<PaymentView />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

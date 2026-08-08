@@ -1,5 +1,15 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #10b981;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #64748b;
 }
 
 * {
@@ -10,13 +20,607 @@
 
 body {
   min-height: 100vh;
-  display: flex;
-  place-items: center;
+  background: var(--bg);
+  color: var(--text);
 }
 
-.app {
-  max-width: 800px;
-  margin: 0 auto;
+/* Loading */
+.loading, .loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--text-muted);
+}
+
+/* Auth */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.auth-card {
+  background: var(--card);
   padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.auth-card .subtitle {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.auth-card button:hover {
+  background: var(--primary-hover);
+}
+
+.auth-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  background: #fef2f2;
+  color: var(--danger);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.toggle-auth {
   text-align: center;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.link-btn {
+  background: none !important;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+  background: none !important;
+}
+
+/* Dashboard */
+.dashboard, .wedding-detail, .payment-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+header p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.btn-secondary:hover {
+  background: var(--bg);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+}
+
+/* Weddings Grid */
+.weddings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.wedding-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.wedding-card:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+.wedding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.wedding-header h3 {
+  font-size: 1.125rem;
+}
+
+.status {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status.upcoming {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status.past {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.wedding-details p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.wedding-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(0 0 0 / 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 100;
+}
+
+.modal {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal h3 {
+  margin-bottom: 1rem;
+}
+
+.modal input, .modal select, .modal textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal input:focus, .modal select:focus, .modal textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.modal textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Vendor Form */
+.vendor-form {
+  max-width: 600px;
+}
+
+.form-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-row > * {
+  flex: 1;
+}
+
+.form-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.form-section h4 {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.slots-list, .payments-list {
+  margin-bottom: 0.5rem;
+}
+
+.slot-item, .payment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.25rem;
+  font-size: 0.813rem;
+}
+
+/* Vendors List */
+.vendors-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.vendor-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+}
+
+.vendor-card.status-confirmed {
+  border-left: 4px solid var(--success);
+}
+
+.vendor-card.status-pending {
+  border-left: 4px solid var(--warning);
+}
+
+.vendor-card.status-cancelled {
+  border-left: 4px solid var(--danger);
+}
+
+.vendor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.vendor-header h3 {
+  font-size: 1rem;
+}
+
+.category {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-badge.confirmed {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.cancelled {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.status-badge.paid {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.vendor-details {
+  font-size: 0.875rem;
+}
+
+.vendor-details p {
+  margin-bottom: 0.25rem;
+}
+
+.vendor-details ul {
+  margin-left: 1rem;
+  font-size: 0.813rem;
+}
+
+.vendor-details .notes {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.vendor-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Conflict Banner */
+.conflict-banner {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.conflict-banner strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.conflict-banner ul {
+  margin-left: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.conflict-banner li {
+  margin-bottom: 0.25rem;
+}
+
+/* Payment View */
+.payment-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.summary-card h3 {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.summary-card .amount {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.summary-card .amount.pending {
+  color: var(--warning);
+}
+
+.summary-card .amount.paid {
+  color: var(--success);
+}
+
+.summary-card .amount.urgent {
+  color: var(--danger);
+}
+
+.payments-table-container {
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.payments-table th, .payments-table td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.payments-table th {
+  background: var(--bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.payments-table td {
+  font-size: 0.875rem;
+}
+
+.payments-table tr.paid {
+  background: #f0fdf4;
+}
+
+.payments-table tr.overdue {
+  background: #fef2f2;
+}
+
+.payments-table tr.urgent {
+  background: #fffbeb;
+}
+
+.payments-table .phone {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.payments-table .days-until {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row > * {
+    width: 100%;
+  }
+
+  .payments-table th, .payments-table td {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
